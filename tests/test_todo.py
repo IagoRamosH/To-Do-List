@@ -42,3 +42,20 @@ def test_concluir_tarefa_muda_status_para_concluida():
     assert len(tarefas) == 1
     assert tarefas[0]["titulo"] == "Estudar pytest"
     assert tarefas[0]["status"] == "concluida"
+
+def test_remover_tarefa_remove_da_lista():
+    """
+    Cenário:
+    - Tenho duas tarefas
+    - Quando removo uma pelo título
+    - Então ela não deve mais aparecer na lista
+    """
+    lista = ToDoList()
+    lista.adicionar_tarefa("Lavar a louça")
+    lista.adicionar_tarefa("Estudar TDD")
+
+    lista.remover_tarefa("Lavar a louça")
+
+    titulos = [t["titulo"] for t in lista.listar_tarefas()]
+    assert "Lavar a louça" not in titulos
+    assert "Estudar TDD" in titulos
