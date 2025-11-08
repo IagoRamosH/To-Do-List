@@ -52,3 +52,17 @@ class ToDoList:
             if tarefa["titulo"] == titulo_normalizado:
                 tarefa["status"] = "concluida"
                 return
+
+    def remover_tarefa(self, titulo: str) -> None:
+        """
+        Remove uma tarefa da lista pelo título.
+
+        Se não encontrar a tarefa, não faz nada.
+        """
+        titulo_normalizado = titulo.strip()
+
+        # usamos enumerate para conseguir o índice da tarefa na lista
+        for indice, tarefa in enumerate(self._tarefas):
+            if tarefa["titulo"] == titulo_normalizado:
+                self._tarefas.pop(indice)
+                return
